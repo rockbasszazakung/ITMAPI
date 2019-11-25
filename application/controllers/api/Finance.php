@@ -20,5 +20,22 @@ class Finance extends  BD_Controller{
     function post_update_post(){
         $finance_id = $this->post('finance_id');
         $finance_name = $this->post('finance_name');
+        $data = [
+            'finance_id' => $finance_id,
+            'finance_name' => $finance_name
+        ];
+            $result = $this->finance_model->update($data);
+            $this->response([
+                'status' => true,
+                'response' => $result
+            ],REST_Controller::HTTP_OK);
+    }
+    function get_delete_get(){
+        $finance_id = $this->get('finance_id');
+        $result = $this->finance_model->delete($finance_id);
+        $this->response([
+            'status' => true,
+            'response' => $result
+        ],REST_Controller::HTTP_OK);
     }
 }
