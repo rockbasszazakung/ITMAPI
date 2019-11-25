@@ -1,0 +1,24 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+class Finance extends  BD_Controller{
+    function __construct(){
+        parent::__construct();
+        $this->load->model('finance_model');
+    }
+    function post_create_post(){
+        $finance_name = $this->post('finance_name');
+        $data = [
+            'finance_id' => null,
+            'finance_name' => $finance_name
+        ];
+            $result = $this->finance_model->insert($data);
+            $this->response([
+                'status' => true,
+                'response' => $result
+            ],REST_Controller::HTTP_OK);
+    }
+    function post_update_post(){
+        $finance_id = $this->post('finance_id');
+        $finance_name = $this->post('finance_name');
+    }
+}

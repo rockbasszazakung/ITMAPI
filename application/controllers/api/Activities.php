@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+//require_once APPPATH . 'libraries/API_Controller.php';
 
-class Activities extends API_Controller{
+class Activities extends BD_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('activities_model');
@@ -30,17 +31,20 @@ class Activities extends API_Controller{
     }
     
     function post_create_post(){
-        $activities_name = $this->input->post('activities_name');
-        $user_id = $this->input->post('user_id');
-        $start_date = $this->input->post('start_date');
-        $end_date = $this->input->post('end_date');
+        // $post = file_get_contents('php://input');
+        $activities_name = $this->post('activities_name');
+        $user_id = $this->post('user_id');
+        $start_date = $this->post('start_date');
+        $end_date = $this->post('end_date');
+        $activities_detail = $this->post('activities_detail');
         $data = [
             'activities_id' => null,
             'activities_name' => $activities_name,
             'user_id' => $user_id,
             'start_date' => $start_date,
             'end_date' => $end_date,
-            'status' => 0
+            'status' => 0,
+            'activities_detail' => $activities_detail
         ];
         $result = $this->activities_model->insert($data);
         $this->response([
@@ -54,13 +58,15 @@ class Activities extends API_Controller{
         $user_id = $this->input->post('user_id');
         $start_date = $this->input->post('start_date');
         $end_date = $this->input->post('end_date');
+        $activities_detail = $this->input->post('activities_detail');
         $data = [
             'activities_id' => $activities_id,
             'activities_name' => $activities_name,
             'user_id' => $user_id,
             'start_date' => $start_date,
             'end_date' => $end_date,
-            'status' => 0
+            'status' => 0,
+            'activities_detail' => $activities_detail
         ];
         $result = $this->activities_model->update($data);
         $this->response([
