@@ -11,4 +11,14 @@ class Finance_model extends CI_Model{
     function insert($data){
         return $this->db->insert($this->tbl_name, $data);
     }
+    function update($data){
+        $this->db->where('finance_id',$data['finance_id']);
+        $this->db->update($this->tbl_name,$data);
+        $result = $this->db->get($this->tbl_name);
+        return $result;
+    }
+    function delete($finance_id){    
+        $this->db->where('finance_id', $finance_id); 
+        return $this->db->delete($this->tbl_name);  
+    }
 }
