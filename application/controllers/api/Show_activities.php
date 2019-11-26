@@ -5,14 +5,14 @@ class Show_activities extends BD_Controller{
         parent::__construct();
         $this->load->model('show_activities_models');
     }
-    function get_all_get(){
-        $keywoed = $this->get('keyword');
-        $result = $this->show_activities_models->get_all($keywoed);
-        $this->response([
-            'status' => true,
-            'response' => $result
-        ],REST_Controller::HTTP_OK);
-    }
+    // function get_all_get(){
+    //     $keywoed = $this->get('keyword');
+    //     $result = $this->show_activities_models->get_all($keywoed);
+    //     $this->response([
+    //         'status' => true,
+    //         'response' => $result
+    //     ],REST_Controller::HTTP_OK);
+    // }
     function get_select_get(){
         $result = $this->show_activities_models->show_activities();
         $this->response([

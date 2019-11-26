@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Finance_model extends CI_Model{
+class show_activities_models extends CI_Model{
     private $tbl_name = "show_activities";
-    function get_all($keyword){
-        $this->db->like('show_activities_name	',$keyword);
-        $result = $this->db->get($this->tbl_name);
-        return $result->result();
-    }
+    // function get_all($keyword){
+    //     $this->db->like('show_activities_name',$keyword);
+    //     $result = $this->db->get($this->tbl_name);
+    //     return $result->result();
+    // }
     function show_activities(){
         $this->db->select('*');
         $result = $this->db->get($this->tbl_name);
