@@ -22,8 +22,13 @@ class show_activities_models extends CI_Model{
         $result = $this->db->get($this->tbl_name);
         return $result;
     }
-    function delete($activities_id){    
+    function delete($show_activities_id){    
         $this->db->where('show_activities_id', $show_activities_id); 
         return $this->db->delete($this->tbl_name);  
+    }
+    function getShow_activities($show_activities_id){
+        $this->db->where('show_activities_id', $show_activities_id);
+        $result = $this->db->get($this->tbl_name);
+        return $result->result();
     }
 }

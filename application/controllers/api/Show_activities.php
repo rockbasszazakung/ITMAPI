@@ -55,8 +55,16 @@ class Show_activities extends BD_Controller{
     }
 
     function get_delete_get(){
-        $show_activities_id = $this->input->get('show_activities_id');
+        $show_activities_id = $this->get('show_activities_id');
         $result = $this->show_activities_models->delete($show_activities_id);
+        $this->response([
+            'status' => true,
+            'response' => $result
+        ],REST_Controller::HTTP_OK);
+    }
+    function getShow_activities_get(){
+        $show_activities_id = $this->get('show_activities_id');
+        $result = $this->show_activities_models->getShow_activities($show_activities_id);
         $this->response([
             'status' => true,
             'response' => $result

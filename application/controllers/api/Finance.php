@@ -5,11 +5,28 @@ class Finance extends  BD_Controller{
         parent::__construct();
         $this->load->model('finance_model');
     }
+    function get_select_get(){
+        $result = $this->finance_model->allFinance();
+        $this->response([
+            'status' => true,
+            'response' => $result
+        ],REST_Controller::HTTP_OK);
+    }
+    function getFinance_get(){
+        $finance_id = $this->get('finance_id');
+        $result = $this->finance_model->getFinance($finance_id);
+        $this->response([
+            'status' => true,
+            'response' => $result
+        ],REST_Controller::HTTP_OK);
+    }
     function post_create_post(){
         $finance_name = $this->post('finance_name');
+        $shirt_size = $this->post('shirt_size');
         $data = [
             'finance_id' => null,
-            'finance_name' => $finance_name
+            'finance_name' => $finance_name,
+            'shirt_size' => $shirt_size
         ];
             $result = $this->finance_model->insert($data);
             $this->response([
