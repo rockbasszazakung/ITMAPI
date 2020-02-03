@@ -9,4 +9,5 @@ class Activities_register_models extends CI_Model{
         $result = $this->db->get($this->tbl_name);
         return $result->result();
     }
+    
 }

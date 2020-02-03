@@ -23,7 +23,11 @@ class Auth extends BD_Controller {
             $this->response($output, REST_Controller::HTTP_OK);
         }
 
-        $match = $val->password;   //Get password for user from database
+        $match = $val->password;
+        // var_dump(password_verify($password, $match));
+        // var_dump($match);
+        // exit(0);
+       //Get password for user from database
         if(password_verify($password, $match)){  //Condition if password matched
         	$token['id'] = $val->user_id;  //From here
             $token['username'] = $username;
@@ -31,6 +35,9 @@ class Auth extends BD_Controller {
             $token['iat'] = $date->getTimestamp();
             $token['exp'] = $date->getTimestamp() + 60*60*5; //To here is to generate token
             $output['token'] = JWT::encode($token,$kunci); //This is the output token
+            $output['id'] = $val->user_id;
+            $output['name'] = $val->name;
+            $output['role'] = $val->role;
 
             $sess_array = array(
                 'id' => $val->user_id,
@@ -43,6 +50,8 @@ class Auth extends BD_Controller {
             $this->session->set_userdata($sess_array);
 
             $output['status'] = true;
+            $output['message'] = 'เข้าสู่ระบบสำเร็จ';
+
             $this->response($output, REST_Controller::HTTP_OK); //This is the respon if success
         }
         else {
@@ -51,5 +60,12 @@ class Auth extends BD_Controller {
             $this->response($output, REST_Controller::HTTP_OK); //This is the respon if failed
         }
     }
+
+    function logout_post()
+	{
+		$this->session->unset_userdata(array('id','username','name'));
+		redirect('', 'refresh');
+	}
+ 
 
 }

@@ -1,23 +1,25 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class user extends  API_Controller{
+class User extends  BD_Controller{
     function __construct(){
         parent::__construct();
-        $this->load->model('user_models');
+        $this->load->model('User_model');
     }
     function post_create_post(){
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        $status = $this->input->post('status');	
-        $role = $this->input->post('role');
+        $username = $this->post('username');
+        $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+        $status = $this->post('status');	
+        $role = $this->post('role');
+        $name = $this->post('name');
         $data = [
             'user_id' => null,
             'username' => $username,
             'password' => $password,
             'status' => 0,
-            'role' => $role
+            'role' => $role,
+            'name' => $name
         ];
-        $result = $this->user_models->insert($data);
+        $result = $this->User_model->insert($data);
         $this->response([
             'status' => true,
             'response' => $result

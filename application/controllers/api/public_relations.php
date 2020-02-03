@@ -25,12 +25,15 @@ class Public_relations extends BD_Controller{
     function post_create_post(){
         $topic = $this->post('topic');
         $content = $this->post('content');
-        $announcer_id = $this->post('announcer_id');
+        $user = $this->post('user');
+        $date = $this->post('date');
         $data = [
             'public_id' => null,
             'topic' => $topic,
             'content' => $content,
-            'announcer_id' => 1
+            'announcer_id' => 1,
+            'user' => $user,
+            'date' => $date
         ];
         $result = $this->Public_relations_model->insert($data);
         $this->response([

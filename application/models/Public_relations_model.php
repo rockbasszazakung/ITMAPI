@@ -11,7 +11,7 @@ class Public_relations_model extends CI_Model{
     }
     function allPublic_relations(){
         $this->db->select('*');
-        $this->db->join('users','public_relations.announcer_id = users.role');
+        $this->db->join('users','public_relations.announcer_id = users.user_id');
         $result = $this->db->get($this->tbl_name);
         return $result->result();
     }

@@ -23,10 +23,18 @@ class Finance extends  BD_Controller{
     function post_create_post(){
         $finance_name = $this->post('finance_name');
         $shirt_size = $this->post('shirt_size');
+        $student_id = $this->post('student_id');
+        $status = $this->post('status');
+        $money = $this->post('money');
+        $user = $this->post('user');
         $data = [
             'finance_id' => null,
             'finance_name' => $finance_name,
-            'shirt_size' => $shirt_size
+            'shirt_size' => $shirt_size,
+            'status' => $status,
+            'student_id' => $student_id,
+            'money' => $money,
+            'user' => $user
         ];
             $result = $this->finance_model->insert($data);
             $this->response([
@@ -37,9 +45,17 @@ class Finance extends  BD_Controller{
     function post_update_post(){
         $finance_id = $this->post('finance_id');
         $finance_name = $this->post('finance_name');
+        $shirt_size = $this->post('shirt_size');
+        $student_id = $this->post('student_id');
+        $status = $this->post('status');
+        $money = $this->post('money');
         $data = [
             'finance_id' => $finance_id,
-            'finance_name' => $finance_name
+            'finance_name' => $finance_name,
+            'shirt_size' => $shirt_size,
+            'status' => $status,
+            'student_id' => $student_id,
+            'money' => $money
         ];
             $result = $this->finance_model->update($data);
             $this->response([

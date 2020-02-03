@@ -5,4 +5,7 @@ class User_model extends BD_Model {
         parent::__construct();
         $this->tableName = 'users';
     }
+    function insert($data){
+        return $this->db->insert($this->tableName, $data);
+    }
 }

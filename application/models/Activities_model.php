@@ -2,16 +2,22 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Activities_model extends CI_Model{
-    private $tbl_name = "activities";
+    public $tbl_name = "activities";
 
-    function search($activities_name){
-        $this->db->like('activities_name',$activities_name);
+    function search($activities_name = null){
+        if($activities_name == null){
+        
+        }
+        else{
+            $this->db->like('activities.activities_name',$activities_name);
+        }
+        $this->db->join('users','activities.user_id = users.user_id');
         $result = $this->db->get($this->tbl_name);
         return $result->result();
     }
     function allActivities(){
         $this->db->select('*');
-        $this->db->join('users','activities.user_id = users.role');
+        // $this->db->join('users','activities.user_id = users.role');
         $result = $this->db->get($this->tbl_name);
         return $result->result();
     }
@@ -33,4 +39,5 @@ class Activities_model extends CI_Model{
         $result = $this->db->get($this->tbl_name);
         return $result->result();
     }
+
 }

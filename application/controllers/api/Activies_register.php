@@ -15,4 +15,5 @@ class Activies_register extends BD_Controller{
             'response' => $result
         ],REST_Controller::HTTP_OK);
     }
+    
 }
